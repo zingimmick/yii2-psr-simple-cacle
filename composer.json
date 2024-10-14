@@ -1,0 +1,81 @@
+{
+    "name": "zing/yii2-psr-simple-cacle",
+    "description": "A PSR simple caching interface implementation that routes to the Yii caching",
+    "keywords": ["yii2", "psr", "caching", "cache"],
+    "license": "MIT",
+    "homepage": "https://github.com/zingimmick/yii2-psr-simple-cache",
+    "support": {
+        "issues": "https://github.com/zingimmick/yii2-psr-simple-cache/issues",
+        "source": "https://github.com/zingimmick/yii2-psr-simple-cache"
+    },
+    "authors": [
+        {
+            "name": "zingimmick",
+            "email": "zingimmick@outlook.com",
+            "homepage": "https://github.com/zingimmick"
+        }
+    ],
+    "config": {
+        "sort-packages": true,
+        "preferred-install": "dist",
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "yiisoft/yii2-composer": true
+        }
+    },
+    "require": {
+        "php": "^5.4 || ^7.0 || ^8.0",
+        "psr/simple-cache": "^1.0",
+        "yiisoft/yii2": "~2.0.0"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.0",
+        "phpstan/phpstan-mockery": "^1.0",
+        "phpunit/phpunit": "^4.8 || ^6.5 || ^7.5 || ^8.5 || ^9.3.3 || ^10.0 || ^11.0",
+        "zing/coding-standard": "^6.4 || ^7.0"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ],
+    "provide": {
+        "psr/simple-cache-implementation": "1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Zing\\Yii2PsrSimpleCache\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Zing\\Yii2PsrSimpleCache\\Tests\\": "tests"
+        },
+        "classmap": [
+            "vendor/yiisoft/yii2/Yii.php"
+        ]
+    },
+    "scripts": {
+        "lint:rector": "@fix:rector --dry-run",
+        "lint:ecs": "ecs check --ansi",
+        "lint:phpstan": "phpstan analyse --ansi",
+        "fix:rector": "rector process --ansi",
+        "fix:ecs": "@lint:ecs --fix",
+        "test:phpunit": "phpunit --colors=always",
+        "lint": [
+            "@lint:rector",
+            "@lint:ecs",
+            "@lint:phpstan"
+        ],
+        "fix": [
+            "@fix:rector",
+            "@fix:ecs"
+        ],
+        "test": [
+            "@test:phpunit"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
