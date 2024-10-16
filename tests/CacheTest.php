@@ -14,7 +14,7 @@ final class CacheTest extends TestCase
      */
     public function testGet()
     {
-        \define('YII_ENABLE_ERROR_HANDLER', false);
+        \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
         $mockObject = $this->getMockBuilder('yii\caching\CacheInterface')
             ->getMock();
@@ -34,7 +34,7 @@ final class CacheTest extends TestCase
      */
     public function testSet()
     {
-        \define('YII_ENABLE_ERROR_HANDLER', false);
+        \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
         $mockObject = $this->getMockBuilder('yii\caching\CacheInterface')
             ->getMock();
@@ -54,7 +54,7 @@ final class CacheTest extends TestCase
      */
     public function testSetWithoutTtlValue()
     {
-        \define('YII_ENABLE_ERROR_HANDLER', false);
+        \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
         $mockObject = $this->getMockBuilder('yii\caching\CacheInterface')
             ->getMock();
@@ -73,7 +73,7 @@ final class CacheTest extends TestCase
      */
     public function testSetWithNegativeTtl()
     {
-        \define('YII_ENABLE_ERROR_HANDLER', false);
+        \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
         $mockObject = $this->getMockBuilder('yii\caching\CacheInterface')
             ->getMock();
@@ -92,7 +92,7 @@ final class CacheTest extends TestCase
      */
     public function testDelete()
     {
-        \define('YII_ENABLE_ERROR_HANDLER', false);
+        \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
         $mockObject = $this->getMockBuilder('yii\caching\CacheInterface')
             ->getMock();
@@ -110,7 +110,7 @@ final class CacheTest extends TestCase
      */
     public function testClear()
     {
-        \define('YII_ENABLE_ERROR_HANDLER', false);
+        \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
         $mockObject = $this->getMockBuilder('yii\caching\CacheInterface')
             ->getMock();
@@ -127,7 +127,7 @@ final class CacheTest extends TestCase
      */
     public function testGetMultiple()
     {
-        \define('YII_ENABLE_ERROR_HANDLER', false);
+        \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
         $mockObject = $this->getMockBuilder('yii\caching\CacheInterface')
             ->getMock();
@@ -159,7 +159,7 @@ final class CacheTest extends TestCase
      */
     public function testSetMultiple()
     {
-        \define('YII_ENABLE_ERROR_HANDLER', false);
+        \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
         $mockObject = $this->getMockBuilder('yii\caching\CacheInterface')
             ->getMock();
@@ -185,7 +185,7 @@ final class CacheTest extends TestCase
      */
     public function testSetMultipleWithoutTtlValue()
     {
-        \define('YII_ENABLE_ERROR_HANDLER', false);
+        \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
         $mockObject = $this->getMockBuilder('yii\caching\CacheInterface')
             ->getMock();
@@ -208,7 +208,7 @@ final class CacheTest extends TestCase
      */
     public function testSetMultipleWithNegativeTtl()
     {
-        \define('YII_ENABLE_ERROR_HANDLER', false);
+        \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
         $mockObject = $this->getMockBuilder('yii\caching\CacheInterface')
             ->getMock();
@@ -229,7 +229,7 @@ final class CacheTest extends TestCase
      */
     public function testDeleteMultiple()
     {
-        \define('YII_ENABLE_ERROR_HANDLER', false);
+        \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
         $mockObject = $this->getMockBuilder('yii\caching\CacheInterface')
             ->getMock();
@@ -247,7 +247,7 @@ final class CacheTest extends TestCase
      */
     public function testDeleteMultipleFailed()
     {
-        \define('YII_ENABLE_ERROR_HANDLER', false);
+        \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
         $mockObject = $this->getMockBuilder('yii\caching\CacheInterface')
             ->getMock();
@@ -265,7 +265,7 @@ final class CacheTest extends TestCase
      */
     public function testHas()
     {
-        \define('YII_ENABLE_ERROR_HANDLER', false);
+        \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
         $mockObject = $this->getMockBuilder('yii\caching\CacheInterface')
             ->getMock();
@@ -284,7 +284,7 @@ final class CacheTest extends TestCase
      */
     public function testCreateWithoutCacheComponent()
     {
-        \define('YII_ENABLE_ERROR_HANDLER', false);
+        \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
         if (method_exists($this, 'expectException')) {
             $this->expectException('InvalidArgumentException');
