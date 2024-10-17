@@ -18,15 +18,49 @@ final class CacheTest extends TestCase
         $this->mockApplication();
         $mockObject = $this->getMockBuilder('yii\caching\CacheInterface')
             ->getMock();
-        $mockObject->expects($this->exactly(3))
+        $mockObject->expects($this->once())
             ->method('get')
             ->with('test')
-            ->willReturn(false, false, 2);
+            ->willReturn(2);
+
+        $cache = new Cache($mockObject);
+        $this->assertSame(2, $cache->get('test', 1));
+    }
+
+    /**
+     * @phpstan-return void
+     */
+    public function testGetWithoutDefault()
+    {
+        \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
+        $this->mockApplication();
+        $mockObject = $this->getMockBuilder('yii\caching\CacheInterface')
+            ->getMock();
+        $mockObject->expects($this->once())
+            ->method('get')
+            ->with('test')
+            ->willReturn(false);
 
         $cache = new Cache($mockObject);
         $this->assertNull($cache->get('test'));
+    }
+
+    /**
+     * @phpstan-return void
+     */
+    public function testGetWithDefault()
+    {
+        \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
+        $this->mockApplication();
+        $mockObject = $this->getMockBuilder('yii\caching\CacheInterface')
+            ->getMock();
+        $mockObject->expects($this->once())
+            ->method('get')
+            ->with('test')
+            ->willReturn(false);
+
+        $cache = new Cache($mockObject);
         $this->assertSame(1, $cache->get('test', 1));
-        $this->assertSame(2, $cache->get('test', 1));
     }
 
     /**
@@ -38,14 +72,32 @@ final class CacheTest extends TestCase
         $this->mockApplication();
         $mockObject = $this->getMockBuilder('yii\caching\CacheInterface')
             ->getMock();
-        $mockObject->expects($this->exactly(2))
+        $mockObject->expects($this->once())
             ->method('set')
             ->with('test', 'value', 1)
-            ->willReturn(true, true);
+            ->willReturn(true);
 
         $cache = new Cache($mockObject);
 
         $this->assertTrue($cache->set('test', 'value', 1));
+    }
+
+    /**
+     * @phpstan-return void
+     */
+    public function testSetWithDateInterval()
+    {
+        \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
+        $this->mockApplication();
+        $mockObject = $this->getMockBuilder('yii\caching\CacheInterface')
+            ->getMock();
+        $mockObject->expects($this->once())
+            ->method('set')
+            ->with('test', 'value', 1)
+            ->willReturn(true);
+
+        $cache = new Cache($mockObject);
+
         $this->assertTrue($cache->set('test', 'value', new \DateInterval('PT1S')));
     }
 
@@ -58,7 +110,7 @@ final class CacheTest extends TestCase
         $this->mockApplication();
         $mockObject = $this->getMockBuilder('yii\caching\CacheInterface')
             ->getMock();
-        $mockObject->expects($this->exactly(1))
+        $mockObject->expects($this->once())
             ->method('set')
             ->with('test', 'value', 0)
             ->willReturn(true, true);
@@ -77,7 +129,7 @@ final class CacheTest extends TestCase
         $this->mockApplication();
         $mockObject = $this->getMockBuilder('yii\caching\CacheInterface')
             ->getMock();
-        $mockObject->expects($this->exactly(1))
+        $mockObject->expects($this->once())
             ->method('delete')
             ->with('test')
             ->willReturn(true);
@@ -131,13 +183,10 @@ final class CacheTest extends TestCase
         $this->mockApplication();
         $mockObject = $this->getMockBuilder('yii\caching\CacheInterface')
             ->getMock();
-        $mockObject->expects($this->exactly(2))
+        $mockObject->expects($this->once())
             ->method('multiGet')
             ->with(['test1', 'test2'])
             ->willReturn([
-                'test1' => 2,
-                'test2' => false,
-            ], [
                 'test1' => 2,
                 'test2' => false,
             ]);
@@ -148,6 +197,27 @@ final class CacheTest extends TestCase
             'test1' => 2,
             'test2' => null,
         ], $cache->getMultiple(['test1', 'test2']));
+    }
+
+    /**
+     * @phpstan-return void
+     */
+    public function testGetMultipleWithDefault()
+    {
+        \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
+        $this->mockApplication();
+        $mockObject = $this->getMockBuilder('yii\caching\CacheInterface')
+            ->getMock();
+        $mockObject->expects($this->once())
+            ->method('multiGet')
+            ->with(['test1', 'test2'])
+            ->willReturn([
+                'test1' => 2,
+                'test2' => false,
+            ]);
+
+        $cache = new Cache($mockObject);
+
         $this->assertSame([
             'test1' => 2,
             'test2' => 1,
@@ -163,18 +233,38 @@ final class CacheTest extends TestCase
         $this->mockApplication();
         $mockObject = $this->getMockBuilder('yii\caching\CacheInterface')
             ->getMock();
-        $mockObject->expects($this->exactly(2))
+        $mockObject->expects($this->once())
             ->method('multiSet')
             ->with([
                 'test' => 'value',
             ], 1, null)
-            ->willReturn([], []);
+            ->willReturn([]);
 
         $cache = new Cache($mockObject);
 
         $this->assertTrue($cache->setMultiple([
             'test' => 'value',
         ], 1));
+    }
+
+    /**
+     * @phpstan-return void
+     */
+    public function testSetMultipleWithDateInterval()
+    {
+        \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
+        $this->mockApplication();
+        $mockObject = $this->getMockBuilder('yii\caching\CacheInterface')
+            ->getMock();
+        $mockObject->expects($this->once())
+            ->method('multiSet')
+            ->with([
+                'test' => 'value',
+            ], 1, null)
+            ->willReturn([]);
+
+        $cache = new Cache($mockObject);
+
         $this->assertTrue($cache->setMultiple([
             'test' => 'value',
         ], new \DateInterval('PT1S')));
@@ -254,7 +344,7 @@ final class CacheTest extends TestCase
         $mockObject->expects($this->exactly(3))
             ->method('delete')
             ->withAnyParameters()
-            ->willReturn(true, false, true);
+            ->willReturn(false, false, false);
         $cache = new Cache($mockObject);
 
         $this->assertFalse($cache->deleteMultiple(['test1', 'test2', 'test3']));
@@ -269,14 +359,31 @@ final class CacheTest extends TestCase
         $this->mockApplication();
         $mockObject = $this->getMockBuilder('yii\caching\CacheInterface')
             ->getMock();
-        $mockObject->expects($this->exactly(2))
+        $mockObject->expects($this->once())
             ->method('exists')
             ->with('test')
-            ->willReturn(false, true);
+            ->willReturn(true);
+
+        $cache = new Cache($mockObject);
+        $this->assertTrue($cache->has('test'));
+    }
+
+    /**
+     * @phpstan-return void
+     */
+    public function testHasReturnFalse()
+    {
+        \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
+        $this->mockApplication();
+        $mockObject = $this->getMockBuilder('yii\caching\CacheInterface')
+            ->getMock();
+        $mockObject->expects($this->once())
+            ->method('exists')
+            ->with('test')
+            ->willReturn(false);
 
         $cache = new Cache($mockObject);
         $this->assertFalse($cache->has('test'));
-        $this->assertTrue($cache->has('test'));
     }
 
     /**

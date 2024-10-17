@@ -12,7 +12,6 @@ return static function (ECSConfig $ecsConfig): void {
     $ecsConfig->skip([
         \SlevomatCodingStandard\Sniffs\TypeHints\DeclareStrictTypesSniff::class,
         \PhpCsFixer\Fixer\FunctionNotation\NullableTypeDeclarationForDefaultNullValueFixer::class,
-
         \SlevomatCodingStandard\Sniffs\ControlStructures\RequireNullCoalesceOperatorSniff::class,
         \SlevomatCodingStandard\Sniffs\TypeHints\NullableTypeForNullDefaultValueSniff::class,
     ]);
