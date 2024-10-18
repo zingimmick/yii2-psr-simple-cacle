@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zing\Yii2PsrSimpleCache\Tests;
 
 use Zing\Yii2PsrSimpleCache\Cache;
@@ -12,7 +14,7 @@ final class CacheTest extends TestCase
     /**
      * @phpstan-return void
      */
-    public function testGet()
+    public function testGet(): void
     {
         \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
@@ -30,7 +32,7 @@ final class CacheTest extends TestCase
     /**
      * @phpstan-return void
      */
-    public function testGetWithoutDefault()
+    public function testGetWithoutDefault(): void
     {
         \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
@@ -48,7 +50,7 @@ final class CacheTest extends TestCase
     /**
      * @phpstan-return void
      */
-    public function testGetWithDefault()
+    public function testGetWithDefault(): void
     {
         \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
@@ -66,7 +68,7 @@ final class CacheTest extends TestCase
     /**
      * @phpstan-return void
      */
-    public function testSet()
+    public function testSet(): void
     {
         \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
@@ -85,7 +87,7 @@ final class CacheTest extends TestCase
     /**
      * @phpstan-return void
      */
-    public function testSetWithDateInterval()
+    public function testSetWithDateInterval(): void
     {
         \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
@@ -104,7 +106,7 @@ final class CacheTest extends TestCase
     /**
      * @phpstan-return void
      */
-    public function testSetWithoutTtlValue()
+    public function testSetWithoutTtlValue(): void
     {
         \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
@@ -123,7 +125,7 @@ final class CacheTest extends TestCase
     /**
      * @phpstan-return void
      */
-    public function testSetWithNegativeTtl()
+    public function testSetWithNegativeTtl(): void
     {
         \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
@@ -142,7 +144,7 @@ final class CacheTest extends TestCase
     /**
      * @phpstan-return void
      */
-    public function testDelete()
+    public function testDelete(): void
     {
         \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
@@ -160,7 +162,7 @@ final class CacheTest extends TestCase
     /**
      * @phpstan-return void
      */
-    public function testClear()
+    public function testClear(): void
     {
         \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
@@ -177,7 +179,7 @@ final class CacheTest extends TestCase
     /**
      * @phpstan-return void
      */
-    public function testGetMultiple()
+    public function testGetMultiple(): void
     {
         \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
@@ -202,7 +204,7 @@ final class CacheTest extends TestCase
     /**
      * @phpstan-return void
      */
-    public function testGetMultipleWithDefault()
+    public function testGetMultipleWithDefault(): void
     {
         \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
@@ -227,7 +229,7 @@ final class CacheTest extends TestCase
     /**
      * @phpstan-return void
      */
-    public function testSetMultiple()
+    public function testSetMultiple(): void
     {
         \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
@@ -250,7 +252,7 @@ final class CacheTest extends TestCase
     /**
      * @phpstan-return void
      */
-    public function testSetMultipleWithDateInterval()
+    public function testSetMultipleWithDateInterval(): void
     {
         \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
@@ -273,7 +275,7 @@ final class CacheTest extends TestCase
     /**
      * @phpstan-return void
      */
-    public function testSetMultipleWithoutTtlValue()
+    public function testSetMultipleWithoutTtlValue(): void
     {
         \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
@@ -296,7 +298,7 @@ final class CacheTest extends TestCase
     /**
      * @phpstan-return void
      */
-    public function testSetMultipleWithNegativeTtl()
+    public function testSetMultipleWithNegativeTtl(): void
     {
         \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
@@ -317,7 +319,7 @@ final class CacheTest extends TestCase
     /**
      * @phpstan-return void
      */
-    public function testDeleteMultiple()
+    public function testDeleteMultiple(): void
     {
         \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
@@ -335,7 +337,7 @@ final class CacheTest extends TestCase
     /**
      * @phpstan-return void
      */
-    public function testDeleteMultipleFailed()
+    public function testDeleteMultipleFailed(): void
     {
         \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
@@ -353,7 +355,7 @@ final class CacheTest extends TestCase
     /**
      * @phpstan-return void
      */
-    public function testHas()
+    public function testHas(): void
     {
         \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
@@ -371,7 +373,7 @@ final class CacheTest extends TestCase
     /**
      * @phpstan-return void
      */
-    public function testHasReturnFalse()
+    public function testHasReturnFalse(): void
     {
         \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
@@ -389,15 +391,11 @@ final class CacheTest extends TestCase
     /**
      * @phpstan-return void
      */
-    public function testCreateWithoutCacheComponent()
+    public function testCreateWithoutCacheComponent(): void
     {
         \defined('YII_ENABLE_ERROR_HANDLER') || \define('YII_ENABLE_ERROR_HANDLER', false);
         $this->mockApplication();
-        if (method_exists($this, 'expectException')) {
-            $this->expectException('InvalidArgumentException');
-        } else {
-            $this->setExpectedException('InvalidArgumentException');
-        }
+        $this->expectException('InvalidArgumentException');
 
         new Cache();
     }

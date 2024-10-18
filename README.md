@@ -7,7 +7,7 @@
 [![Latest Unstable Version](https://poser.pugx.org/zing/yii2-psr-simple-cache/v/unstable.svg)](https://packagist.org/packages/zing/yii2-psr-simple-cache)
 [![License](https://poser.pugx.org/zing/yii2-psr-simple-cache/license)](https://packagist.org/packages/zing/yii2-psr-simple-cache)
 
-> **Requires [PHP 5.4.0+](https://php.net/releases/)**
+> **Requires [PHP 8.0.0+](https://php.net/releases/)**
 
 Require Yii2 PSR Simple Cache using [Composer](https://getcomposer.org):
 

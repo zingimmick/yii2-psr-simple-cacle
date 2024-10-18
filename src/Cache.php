@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zing\Yii2PsrSimpleCache;
 
 use Psr\SimpleCache\CacheInterface;
@@ -7,10 +9,7 @@ use yii\caching\CacheInterface as YiiCache;
 
 class Cache implements CacheInterface
 {
-    /**
-     * @var \yii\caching\CacheInterface
-     */
-    private $yiiCache;
+    private YiiCache $yiiCache;
 
     public function __construct(YiiCache $yiiCache = null)
     {
@@ -25,27 +24,14 @@ class Cache implements CacheInterface
         $this->yiiCache = $yiiCache;
     }
 
-    /**
-     * @param string $key
-     * @param mixed $default
-     *
-     * @return mixed
-     */
-    public function get($key, $default = null)
+    public function get(string $key, mixed $default = null): mixed
     {
         $value = $this->yiiCache->get($key);
 
         return $value === false ? $default : $value;
     }
 
-    /**
-     * @param string $key
-     * @param mixed $value
-     * @param int|\DateInterval|null $ttl
-     *
-     * @return bool
-     */
-    public function set($key, $value, $ttl = null)
+    public function set(string $key, mixed $value, null|\DateInterval|int $ttl = null): bool
     {
         $seconds = $this->getSeconds($ttl);
         if ($seconds === null) {
@@ -59,31 +45,22 @@ class Cache implements CacheInterface
         return $this->yiiCache->set($key, $value, $seconds);
     }
 
-    /**
-     * @param string $key
-     *
-     * @return bool
-     */
-    public function delete($key)
+    public function delete(string $key): bool
     {
         return $this->yiiCache->delete($key);
     }
 
-    /**
-     * @return bool
-     */
-    public function clear()
+    public function clear(): bool
     {
         return $this->yiiCache->flush();
     }
 
     /**
      * @param iterable<string> $keys
-     * @param mixed $default
      *
      * @return iterable<string, mixed>
      */
-    public function getMultiple($keys, $default = null)
+    public function getMultiple(iterable $keys, mixed $default = null): iterable
     {
         $values = $this->yiiCache->multiGet(\is_array($keys) ? $keys : iterator_to_array($keys));
         foreach ($values as $key => $value) {
@@ -95,11 +72,8 @@ class Cache implements CacheInterface
 
     /**
      * @param iterable<string, mixed> $values
-     * @param int|\DateInterval|null $ttl
-     *
-     * @return bool
      */
-    public function setMultiple($values, $ttl = null)
+    public function setMultiple(iterable $values, null|\DateInterval|int $ttl = null): bool
     {
         $values = \is_array($values) ? $values : iterator_to_array($values);
         $seconds = $this->getSeconds($ttl);
@@ -116,10 +90,8 @@ class Cache implements CacheInterface
 
     /**
      * @param iterable<string> $keys
-     *
-     * @return bool
      */
-    public function deleteMultiple($keys)
+    public function deleteMultiple(iterable $keys): bool
     {
         $result = true;
         foreach ($keys as $key) {
@@ -131,12 +103,7 @@ class Cache implements CacheInterface
         return $result;
     }
 
-    /**
-     * @param string $key
-     *
-     * @return bool
-     */
-    public function has($key)
+    public function has(string $key): bool
     {
         return $this->yiiCache->exists($key);
     }

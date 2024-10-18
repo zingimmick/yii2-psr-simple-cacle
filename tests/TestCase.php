@@ -1,10 +1,8 @@
 <?php
 
-namespace Zing\Yii2PsrSimpleCache\Tests;
+declare(strict_types=1);
 
-if (class_exists('PHPUnit_Framework_TestCase') && ! class_exists('PHPUnit\Framework\TestCase')) {
-    class_alias('PHPUnit_Framework_TestCase', 'PHPUnit\Framework\TestCase');
-}
+namespace Zing\Yii2PsrSimpleCache\Tests;
 
 use PHPUnit\Framework\TestCase as BaseTestCase;
 use yii\helpers\ArrayHelper;
@@ -17,7 +15,7 @@ abstract class TestCase extends BaseTestCase
      *
      * @phpstan-return void
      */
-    protected function mockApplication(array $config = [], $appClass = '\yii\console\Application')
+    protected function mockApplication(array $config = [], $appClass = '\yii\console\Application'): void
     {
         new $appClass(ArrayHelper::merge([
             'id' => 'testapp',
