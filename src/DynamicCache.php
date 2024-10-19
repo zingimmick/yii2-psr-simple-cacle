@@ -23,19 +23,31 @@ class DynamicCache implements CacheInterface
         return $this->cache;
     }
 
-    public function get(string $key, mixed $default = null): mixed
+    /**
+     * @param string $key
+     * @param mixed $default
+     */
+    public function get($key, $default = null): mixed
     {
         return $this->getCache()
             ->get($key, $default);
     }
 
-    public function set(string $key, mixed $value, null|\DateInterval|int $ttl = null): bool
+    /**
+     * @param string $key
+     * @param mixed $value
+     * @param int|\DateInterval|null $ttl
+     */
+    public function set($key, $value, $ttl = null): bool
     {
         return $this->getCache()
             ->set($key, $value, $ttl);
     }
 
-    public function delete(string $key): bool
+    /**
+     * @param string $key
+     */
+    public function delete($key): bool
     {
         return $this->getCache()
             ->delete($key);
@@ -49,10 +61,11 @@ class DynamicCache implements CacheInterface
 
     /**
      * @param iterable<string> $keys
+     * @param mixed $default
      *
      * @return iterable<string, mixed>
      */
-    public function getMultiple(iterable $keys, mixed $default = null): iterable
+    public function getMultiple($keys, $default = null): iterable
     {
         return $this->getCache()
             ->getMultiple($keys, $default);
@@ -60,8 +73,9 @@ class DynamicCache implements CacheInterface
 
     /**
      * @param iterable<string, mixed> $values
+     * @param int|\DateInterval|null $ttl
      */
-    public function setMultiple(iterable $values, null|\DateInterval|int $ttl = null): bool
+    public function setMultiple($values, $ttl = null): bool
     {
         return $this->getCache()
             ->setMultiple($values, $ttl);
@@ -70,13 +84,16 @@ class DynamicCache implements CacheInterface
     /**
      * @param iterable<string> $keys
      */
-    public function deleteMultiple(iterable $keys): bool
+    public function deleteMultiple($keys): bool
     {
         return $this->getCache()
             ->deleteMultiple($keys);
     }
 
-    public function has(string $key): bool
+    /**
+     * @param string $key
+     */
+    public function has($key): bool
     {
         return $this->getCache()
             ->has($key);

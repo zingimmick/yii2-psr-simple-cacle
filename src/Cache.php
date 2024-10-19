@@ -24,14 +24,23 @@ class Cache implements CacheInterface
         $this->yiiCache = $yiiCache;
     }
 
-    public function get(string $key, mixed $default = null): mixed
+    /**
+     * @param string $key
+     * @param mixed $default
+     */
+    public function get($key, $default = null): mixed
     {
         $value = $this->yiiCache->get($key);
 
         return $value === false ? $default : $value;
     }
 
-    public function set(string $key, mixed $value, null|\DateInterval|int $ttl = null): bool
+    /**
+     * @param string $key
+     * @param mixed $value
+     * @param int|\DateInterval|null $ttl
+     */
+    public function set($key, $value, $ttl = null): bool
     {
         $seconds = $this->getSeconds($ttl);
         if ($seconds === null) {
@@ -45,7 +54,10 @@ class Cache implements CacheInterface
         return $this->yiiCache->set($key, $value, $seconds);
     }
 
-    public function delete(string $key): bool
+    /**
+     * @param string $key
+     */
+    public function delete($key): bool
     {
         return $this->yiiCache->delete($key);
     }
@@ -57,10 +69,11 @@ class Cache implements CacheInterface
 
     /**
      * @param iterable<string> $keys
+     * @param mixed $default
      *
      * @return iterable<string, mixed>
      */
-    public function getMultiple(iterable $keys, mixed $default = null): iterable
+    public function getMultiple($keys, $default = null): iterable
     {
         $values = $this->yiiCache->multiGet(\is_array($keys) ? $keys : iterator_to_array($keys));
         foreach ($values as $key => $value) {
@@ -72,8 +85,9 @@ class Cache implements CacheInterface
 
     /**
      * @param iterable<string, mixed> $values
+     * @param int|\DateInterval|null $ttl
      */
-    public function setMultiple(iterable $values, null|\DateInterval|int $ttl = null): bool
+    public function setMultiple($values, $ttl = null): bool
     {
         $values = \is_array($values) ? $values : iterator_to_array($values);
         $seconds = $this->getSeconds($ttl);
@@ -91,7 +105,7 @@ class Cache implements CacheInterface
     /**
      * @param iterable<string> $keys
      */
-    public function deleteMultiple(iterable $keys): bool
+    public function deleteMultiple($keys): bool
     {
         $result = true;
         foreach ($keys as $key) {
@@ -103,7 +117,10 @@ class Cache implements CacheInterface
         return $result;
     }
 
-    public function has(string $key): bool
+    /**
+     * @param string $key
+     */
+    public function has($key): bool
     {
         return $this->yiiCache->exists($key);
     }
