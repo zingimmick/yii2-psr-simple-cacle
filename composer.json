@@ -1,5 +1,5 @@
 {
-    "name": "zing/yii2-psr-simple-cacle",
+    "name": "zing/yii2-psr-simple-cache",
     "description": "A PSR simple caching interface implementation that routes to the Yii caching",
     "keywords": ["yii2", "psr", "caching", "cache"],
     "license": "MIT",
