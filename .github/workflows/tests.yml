@@ -52,7 +52,7 @@ jobs:
         run: composer require phpunit/phpunit:'^9.3.3 || ^10.0 || ^11.0' --no-update --dev
 
       - name: Install dependencies
-        uses: ramsey/composer-install@v1
+        uses: ramsey/composer-install@v3
         with:
           dependency-versions: ${{ matrix.stability }}
 
